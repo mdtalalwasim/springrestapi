@@ -11,6 +11,8 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -26,14 +28,17 @@ public class Employee {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	
+	@NotNull(message = "Employee name should not be null!")
 	private String name;
 	
-	private Long age;
+	private Long age = 0L;
 	
 	private String location;
 	
+	@Email(message = "Please input valid email!")
 	private String email;
 	
+	@NotNull(message = "Employee Department should not be null!")
 	private String department;
 	
 	@CreationTimestamp

@@ -17,6 +17,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.mdtalalwasim.springrestapi.entity.Employee;
 import com.mdtalalwasim.springrestapi.service.EmployeeService;
 
+import jakarta.validation.Valid;
+
 @RestController
 //@RequestMapping("/api")--this will define in properties file
 public class EmployeeController {
@@ -43,7 +45,7 @@ public class EmployeeController {
 	}
 	
 	@PostMapping("/employees")
-	public Employee saveEmployee(@RequestBody Employee employee) {
+	public Employee saveEmployee(@Valid @RequestBody Employee employee) {
 		System.out.println("Save new Employee...");
 		return employeeService.saveEmployee(employee);
 	}
