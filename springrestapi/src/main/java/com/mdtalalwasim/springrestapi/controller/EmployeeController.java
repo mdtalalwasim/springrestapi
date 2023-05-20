@@ -38,11 +38,13 @@ public class EmployeeController {
 	// localhost:8080/employees/
 	@GetMapping("/employees") 
 	public List<Employee> getEmployees() {
+		System.out.println("Fetching List of Employees...");
 		return employeeService.getEmployees();
 	}
 	
 	@PostMapping("/employees")
 	public Employee saveEmployee(@RequestBody Employee employee) {
+		System.out.println("Save new Employee...");
 		return employeeService.saveEmployee(employee);
 	}
 
@@ -50,6 +52,7 @@ public class EmployeeController {
 	// localhost:8080/employees/12 
 	@GetMapping("/employees/{id}")
 	public Employee getEmployee(@PathVariable() Long id) {
+		System.out.println("Fetching Single Employee...");
 		return employeeService.getEmployee(id);
 	}
 	
@@ -62,14 +65,16 @@ public class EmployeeController {
 	//localhost:8080/employees/12
 	@PutMapping("/employees/{id}")
 	public Employee updateEmployee(@PathVariable Long id, @RequestBody Employee employee) {
-		System.out.println("Updating the employee data "+id);
-		return employee; 
+		employee.setId(id);
+		System.out.println("Updating Employee...");
+		return employeeService.updateEmployee(employee); 
 	}
 	
 	//localhost:8080/employees?id=12 
 	@DeleteMapping("/employees")
-	public String deleteEmployees(@RequestParam Long id) {
-		return "Deleting the employees details with id = "+id;
+	public void deleteEmployees(@RequestParam Long id) {
+		System.out.println("Deleting Employee...");
+		employeeService.deleteEmployee(id);
 	}
 
 
