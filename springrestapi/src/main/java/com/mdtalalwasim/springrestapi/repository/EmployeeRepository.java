@@ -10,4 +10,6 @@ import com.mdtalalwasim.springrestapi.entity.Employee;
 @Repository
 public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 	List<Employee> findByName(String name);
+	
+	List<Employee> findByNameAndLocation(String name, String location);
 }

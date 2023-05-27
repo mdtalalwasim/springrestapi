@@ -75,9 +75,19 @@ public class EmployeeController {
 		return new ResponseEntity<Employee>(employeeService.updateEmployee(employee), HttpStatus.OK); 
 	}
 	
-	@GetMapping("/employee/{name}")
+	@GetMapping("/employee/searchByName")
 	public ResponseEntity<List<Employee>> getEmployeeByName(@RequestParam String name){
 		return new ResponseEntity<List<Employee>>(employeeService.getEmployeeByName(name), HttpStatus.OK);
+	}
+	
+	@GetMapping("/employee/searchByNameAndLocation")
+	public ResponseEntity<List<Employee>> getEmployeeByNameAndLocation(@RequestParam String name, @RequestParam String location){
+		return new ResponseEntity<List<Employee>>(employeeService.getEmployeeByNameAndLocation(name, location), HttpStatus.OK);
+	}
+	
+	@GetMapping("/employee/{name}/{location}")//using @PathaVariable
+	public ResponseEntity<List<Employee>> getEmployeeByNameAndLocation2(@PathVariable String name, @PathVariable String location){
+		return new ResponseEntity<List<Employee>>(employeeService.getEmployeeByNameAndLocation(name, location), HttpStatus.OK);
 	}
 	
 	
