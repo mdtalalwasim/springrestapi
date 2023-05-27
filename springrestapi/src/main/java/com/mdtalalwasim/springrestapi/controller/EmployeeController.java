@@ -75,6 +75,12 @@ public class EmployeeController {
 		return new ResponseEntity<Employee>(employeeService.updateEmployee(employee), HttpStatus.OK); 
 	}
 	
+	@GetMapping("/employee/{name}")
+	public ResponseEntity<List<Employee>> getEmployeeByName(@RequestParam String name){
+		return new ResponseEntity<List<Employee>>(employeeService.getEmployeeByName(name), HttpStatus.OK);
+	}
+	
+	
 	//localhost:8080/employees?id=12 
 	@DeleteMapping("/employees")
 	public ResponseEntity<HttpStatus> deleteEmployees(@RequestParam Long id) {
@@ -82,6 +88,7 @@ public class EmployeeController {
 		employeeService.deleteEmployee(id);
 		return new ResponseEntity<HttpStatus>(HttpStatus.NO_CONTENT);
 	}
+	
 
 
 }
