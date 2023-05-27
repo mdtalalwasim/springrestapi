@@ -69,4 +69,25 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.findByNameAndLocation(name,location);
 	}
 
+
+	@Override
+	public List<Employee> getEmployeeByKeyword(String keyword) {
+		return employeeRepository.findByNameContaining(keyword);
+	}
+
+
+	@Override
+	public List<Employee> getEmployeeByAgeGreaterThan(Integer age) {
+		return employeeRepository.findByAgeGreaterThan(age);
+	}
+
+
+	@Override
+	public List<Employee> getEmployeeByAgeBetween(Integer ageFrom, Integer ageTo) {
+		// TODO Auto-generated method stub
+		return employeeRepository.findByAgeBetween(ageFrom, ageTo);
+	}
+	
+	
+
 }

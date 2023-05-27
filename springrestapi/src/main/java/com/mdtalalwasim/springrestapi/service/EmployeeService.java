@@ -20,5 +20,11 @@ public interface EmployeeService {
 	List<Employee> getEmployeeByName(String name);
 	
 	List<Employee> getEmployeeByNameAndLocation(String name, String location);
+	
+	List<Employee> getEmployeeByKeyword(String keyword);
+	
+	List<Employee> getEmployeeByAgeGreaterThan(Integer age);
+	
+	List<Employee> getEmployeeByAgeBetween(Integer ageFrom, Integer ageTo);
 
 }

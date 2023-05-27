@@ -91,6 +91,27 @@ public class EmployeeController {
 	}
 	
 	
+	@GetMapping("/employee/searchByKeyword")
+	public ResponseEntity<List<Employee>> getEmployeeByKeyword(@RequestParam String keyword){
+		return new ResponseEntity<List<Employee>>(employeeService.getEmployeeByKeyword(keyword), HttpStatus.OK);
+	}
+	
+	
+	@GetMapping("/employee/{searchByAgeGreaterThan}") //implemented with pathVariable
+	public ResponseEntity<List<Employee>> getEmployeeByAgeGreaterThan(@PathVariable("searchByAgeGreaterThan") int age){
+		return new ResponseEntity<List<Employee>>(employeeService.getEmployeeByAgeGreaterThan(age), HttpStatus.OK);
+	}
+	@GetMapping("/employee/searchByAgeGreaterThan") //implemented with Request Param
+	public ResponseEntity<List<Employee>> getEmployeeByAgeGreaterThan2(@RequestParam int age){
+		return new ResponseEntity<List<Employee>>(employeeService.getEmployeeByAgeGreaterThan(age), HttpStatus.OK);
+	}
+	
+	@GetMapping("/employee/searchByAgeFromAndAgeTo") //implemented with Request Param
+	public ResponseEntity<List<Employee>> getEmployeeByAgeBetween(@RequestParam int ageFrom, @RequestParam int ageTo){
+		return new ResponseEntity<List<Employee>>(employeeService.getEmployeeByAgeBetween(ageFrom, ageTo), HttpStatus.OK);
+	}
+	
+	
 	//localhost:8080/employees?id=12 
 	@DeleteMapping("/employees")
 	public ResponseEntity<HttpStatus> deleteEmployees(@RequestParam Long id) {
