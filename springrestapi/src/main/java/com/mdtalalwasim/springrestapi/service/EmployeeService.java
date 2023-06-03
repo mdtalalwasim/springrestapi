@@ -7,7 +7,11 @@ import com.mdtalalwasim.springrestapi.entity.Employee;
 
 public interface EmployeeService {
 	
-	List<Employee> getEmployees();
+	//with pagination method
+	List<Employee> getEmployees(int pageNumber, int pageSize);
+	
+	//without pagination method
+	//List<Employee> getEmployees();
 	
 	Employee saveEmployee(Employee employee);
 	

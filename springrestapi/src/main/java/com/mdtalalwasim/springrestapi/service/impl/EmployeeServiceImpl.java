@@ -1,10 +1,13 @@
 package com.mdtalalwasim.springrestapi.service.impl;
 
+import java.awt.print.Pageable;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 
 import com.mdtalalwasim.springrestapi.entity.Employee;
@@ -19,10 +22,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	
 	@Override
-	public List<Employee> getEmployees() {
+	public List<Employee> getEmployees(int pageNumber, int pageSize) {
 		// TODO Auto-generated method stub
-		return employeeRepository.findAll();
+		org.springframework.data.domain.Pageable pages = PageRequest.of(pageNumber, pageSize);
+		return employeeRepository.findAll(pages).getContent();
 	}
+	
+//	//without pagination
+//	@Override
+//	public List<Employee> getEmployees() {
+//		// TODO Auto-generated method stub
+//		
+//		return employeeRepository.findAll();
+//	}
 
 
 	@Override
@@ -87,6 +99,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// TODO Auto-generated method stub
 		return employeeRepository.findByAgeBetween(ageFrom, ageTo);
 	}
+
+
+	
 	
 	
 

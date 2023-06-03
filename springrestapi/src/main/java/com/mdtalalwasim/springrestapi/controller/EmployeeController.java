@@ -41,11 +41,19 @@ public class EmployeeController {
 	}
 
 	// localhost:8080/employees/
+	//with pagination
 	@GetMapping("/employees") 
-	public ResponseEntity<List<Employee>>  getEmployees() {
+	public ResponseEntity<List<Employee>>  getEmployees(@RequestParam Integer pageNumber, @RequestParam Integer pageSize) {
 		System.out.println("Fetching List of Employees...");
-		return new ResponseEntity<List<Employee>> (employeeService.getEmployees(), HttpStatus.OK);
+		return new ResponseEntity<List<Employee>> (employeeService.getEmployees(pageNumber, pageSize), HttpStatus.OK);
 	}
+	
+//	//without pagination 
+//	@GetMapping("/employees") 
+//	public ResponseEntity<List<Employee>>  getEmployees() {
+//		System.out.println("Fetching List of Employees...");
+//		return new ResponseEntity<List<Employee>> (employeeService.getEmployees(), HttpStatus.OK);
+//	}
 	
 	@PostMapping("/employees")
 	public ResponseEntity<Employee>  saveEmployee(@Valid @RequestBody Employee employee) {
