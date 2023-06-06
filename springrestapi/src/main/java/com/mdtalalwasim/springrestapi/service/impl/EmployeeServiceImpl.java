@@ -110,6 +110,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return employeeRepository.findEmployeeByNameOrLocation(name, location);
 	}
 
+	@Override
+	public Integer deleteEmployeeByName(String name) {
+		// TODO Auto-generated method stub
+		return employeeRepository.deleteEmployeeByName(name);
+	}
+
 
 	
 	

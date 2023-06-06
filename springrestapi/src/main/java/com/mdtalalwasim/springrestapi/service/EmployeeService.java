@@ -32,5 +32,7 @@ public interface EmployeeService {
 	List<Employee> getEmployeeByAgeBetween(Integer ageFrom, Integer ageTo);
 	
 	List<Employee> getEmployeeByNameOrLocation(String name, String location);
+	
+	Integer deleteEmployeeByName(String name);
 
 }

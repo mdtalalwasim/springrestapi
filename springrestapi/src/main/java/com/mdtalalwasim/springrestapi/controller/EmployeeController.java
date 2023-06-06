@@ -120,8 +120,15 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("/employees/{empName}/{empLocation}")
-	public ResponseEntity<List<Employee>> getEmployeeByNameOrLocationW(@PathVariable("empName") String name, @PathVariable("empLocation") String location){
+	public ResponseEntity<List<Employee>> getEmployeeByNameOrLocation(@PathVariable("empName") String name, @PathVariable("empLocation") String location){
 		return new ResponseEntity<List<Employee>>(employeeService.getEmployeeByNameOrLocation(name, location), HttpStatus.OK);
+	}
+	
+	
+	//
+	@DeleteMapping("/employee/delete/{empName}")
+	public ResponseEntity<String> deleteEmployeeByName(@PathVariable("empName") String name){
+		return new ResponseEntity<String>(employeeService.deleteEmployeeByName(name)+" No. of records deleted! ", HttpStatus.OK);
 	}
 	
 	

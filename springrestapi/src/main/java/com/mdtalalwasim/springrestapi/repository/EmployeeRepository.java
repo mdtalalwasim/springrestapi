@@ -5,9 +5,11 @@ import java.util.Optional;
 
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.mdtalalwasim.springrestapi.entity.Employee;
 
@@ -34,11 +36,18 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
 	List<Employee> findByAgeBetween(int ageFrom, int ageTo);
 	
 	
-	//JPQL Query
-	@Query("From Employee WHERE name= :name OR location =:location")
+	//JPQL SELECT Query
+	@Query("FROM Employee WHERE name= :name OR location =:location")
 	List<Employee> findEmployeeByNameOrLocation(String name, String location);
 	
-
+	//JPQL Delete Query
+	@Modifying
+	@Transactional
+	@Query("DELETE FROM Employee WHERE name =:name")
+	Integer deleteEmployeeByName(String name);// Return Type Integer means : the number of data deleted from database;
+	
+	
+	
 	
 	//When implement pagination---> otherwise not need! Because JpaRepository will provide it own method.
 	Employee save(Employee employee);//When implement pagination
