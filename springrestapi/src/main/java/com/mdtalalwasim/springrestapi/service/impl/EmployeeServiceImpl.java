@@ -25,7 +25,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	
 	@Override
 	public List<Employee> getEmployees(int pageNumber, int pageSize) {
-		// TODO Auto-generated method stub
+		//pagination and sorting both are implemented
 		org.springframework.data.domain.Pageable pages = PageRequest.of(pageNumber, pageSize, Direction.DESC, "id");
 		return employeeRepository.findAll(pages).getContent();
 	}
