@@ -8,6 +8,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import com.mdtalalwasim.springrestapi.entity.Employee;
@@ -24,7 +26,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<Employee> getEmployees(int pageNumber, int pageSize) {
 		// TODO Auto-generated method stub
-		org.springframework.data.domain.Pageable pages = PageRequest.of(pageNumber, pageSize);
+		org.springframework.data.domain.Pageable pages = PageRequest.of(pageNumber, pageSize, Direction.DESC, "id");
 		return employeeRepository.findAll(pages).getContent();
 	}
 	
@@ -84,7 +86,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public List<Employee> getEmployeeByKeyword(String keyword) {
-		return employeeRepository.findByNameContaining(keyword);
+		//sorting implemented
+		Sort sort = Sort.by(Sort.Direction.DESC, "id");
+		return employeeRepository.findByNameContaining(keyword, sort);
 	}
 
 

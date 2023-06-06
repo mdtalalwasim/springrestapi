@@ -3,6 +3,7 @@ package com.mdtalalwasim.springrestapi.repository;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
@@ -21,7 +22,7 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
 	List<Employee> findByNameAndLocation(String name, String location);
 	
 	//SELECT * FROM tbl_employee WHERE name LIKE "%asi%";
-	List<Employee> findByNameContaining(String keyword);
+	List<Employee> findByNameContaining(String keyword, Sort sort);
 	
 	//List<Employee> findByNameLike(String"%"+keyword+"%");
 	
