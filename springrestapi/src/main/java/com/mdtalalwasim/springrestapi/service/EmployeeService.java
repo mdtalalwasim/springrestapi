@@ -30,5 +30,7 @@ public interface EmployeeService {
 	List<Employee> getEmployeeByAgeGreaterThan(Integer age);
 	
 	List<Employee> getEmployeeByAgeBetween(Integer ageFrom, Integer ageTo);
+	
+	List<Employee> getEmployeeByNameOrLocation(String name, String location);
 
 }

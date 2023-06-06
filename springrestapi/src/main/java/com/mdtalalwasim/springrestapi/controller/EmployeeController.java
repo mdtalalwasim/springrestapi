@@ -119,6 +119,11 @@ public class EmployeeController {
 		return new ResponseEntity<List<Employee>>(employeeService.getEmployeeByAgeBetween(ageFrom, ageTo), HttpStatus.OK);
 	}
 	
+	@GetMapping("/employees/{empName}/{empLocation}")
+	public ResponseEntity<List<Employee>> getEmployeeByNameOrLocationW(@PathVariable("empName") String name, @PathVariable("empLocation") String location){
+		return new ResponseEntity<List<Employee>>(employeeService.getEmployeeByNameOrLocation(name, location), HttpStatus.OK);
+	}
+	
 	
 	//localhost:8080/employees?id=12 
 	@DeleteMapping("/employees")
