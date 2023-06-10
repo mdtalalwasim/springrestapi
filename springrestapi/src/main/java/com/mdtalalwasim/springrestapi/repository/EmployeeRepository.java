@@ -54,4 +54,9 @@ public interface EmployeeRepository extends PagingAndSortingRepository<Employee,
 	void deleteById(Long id);//When implement pagination
 	Optional<Employee> findById(Long id);//When implement pagination
 	
+	
+	//Native Query Example
+	@Query(value ="select * from tbl_employee", nativeQuery = true)
+	List<Employee> getAllEmployees();
+	
 }

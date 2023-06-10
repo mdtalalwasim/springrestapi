@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mdtalalwasim.springrestapi.entity.Employee;
+import com.mdtalalwasim.springrestapi.repository.EmployeeRepository;
 import com.mdtalalwasim.springrestapi.service.EmployeeService;
 
 import jakarta.validation.Valid;
@@ -28,6 +29,9 @@ public class EmployeeController {
 	
 	@Autowired
 	EmployeeService employeeService;
+	
+	@Autowired
+	EmployeeRepository employeeRepository;
 	
 	@Value("${app.name: EMS}")
 	private String appName;
@@ -55,12 +59,23 @@ public class EmployeeController {
 //		return new ResponseEntity<List<Employee>> (employeeService.getEmployees(), HttpStatus.OK);
 //	}
 	
+	
+	@GetMapping("/get-all-employees") //this will use SQL Native Query method in JPA
+	public ResponseEntity<List<Employee>>  getEmployees() {
+		System.out.println("Fetching List of Employees...Using Native Query methods in JPA...");
+		return new ResponseEntity<List<Employee>> (employeeRepository.getAllEmployees(), HttpStatus.OK);//direct access repository layer.
+	}
+	
+	
+	
+	
+	
 	@PostMapping("/employees")
 	public ResponseEntity<Employee>  saveEmployee(@Valid @RequestBody Employee employee) {
 		System.out.println("Save new Employee...");
 		return new ResponseEntity<Employee> (employeeService.saveEmployee(employee), HttpStatus.CREATED);
 	}
-
+	
 
 	// localhost:8080/employees/12 
 	@GetMapping("/employees/{id}")
